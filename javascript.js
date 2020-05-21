@@ -35,7 +35,9 @@ $.ajax({
 }).then(function (response) {
     console.log(response);
 });
-
+$("#form-submit").on("click", function() {
+    event.preventDefault();
+});
 // function buildQueryURL() {
 // // queryURL is the url we'll use to query the API
 // // Begin building an object to contain our API call's query parameters
@@ -63,7 +65,7 @@ function initMap() {
         computeTotalDistance(directionsRenderer.getDirections());
     });
 
-    displayRoute('', '', directionsService,
+    displayRoute('Philadelphia', 'Pittsburgh', directionsService,
         directionsRenderer);
 }
 
@@ -72,7 +74,7 @@ function displayRoute(origin, destination, service, display) {
     service.route({
         origin: origin,
         destination: destination,
-        waypoints: [{ location: '' }, { location: '' }],
+        waypoints: [{ location: origin }, { location: destination }],
         travelMode: 'DRIVING',
         avoidTolls: true
     }, function (response, status) {
