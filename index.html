@@ -1,16 +1,62 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>API Project</title>
-  <link type="stylesheet" href="style.css">  
-</head>
 
-<body>
-<!-- jQuery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="javascript.js"></script>
-</body>
+   <!-- AIzaSyCm4oR4IdvxBO6YgE4DSiSrVcvAtQ5uXdg -->
 
+  <!DOCTYPE html>
+  <html>
+    <head>
+      <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+      <meta charset="utf-8">
+      <title>Draggable Directions</title>
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"></link>
+      <link rel="stylesheet" href="./style.css"></link>
+  <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-app.js"></script>
+   <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-database.js"></script>
+    </head>
+    <body>
+      <div id="map"></div>
+      <div id="right-panel">
+        <p>Total Distance: <span id="total"></span></p>
+        <div class="container">
+          <!-- Jumbotron for Title -->
+          <div class="jumbotron" style="background-color: #20315A ; color: white;">
+            <h1 class="text-center">
+              <strong>
+                <i class="fa fa-newspaper-o"></i> Your Route</strong>
+            </h1>
+          </div>
+          <!-- Row for Searching New York Times -->
+          <div class="row">
+            <div class="col-sm-12">
+              <br>
+              <!-- First card is for handling the search parameters -->
+              <div class="card">
+                <div class="card-header">
+                  <strong>
+                    <i class="fa fa-list-alt"></i> Search Parameters</strong>
+                </div>
+                <div class="card-body">
+                  <!-- Here we create an HTML Form for handling the inputs-->
+                  <form role="form">
+                    <!-- Here we create the text box for capturing the search term-->
+                    <div class="form-group">
+                      <label for="search">Starting Point:</label>
+                 
+                      <input type="text" class="form-control" id="start-point">
+                    </div>
+                    <div class="form-group">
+                      <label for="search">Destination:</label>
+                      <input type="text" class="form-control" id="dest-point">
+                    </div>
+                    <button id="form-submit">GO!</button>
+
+      </div>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+      <script async defer
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCm4oR4IdvxBO6YgE4DSiSrVcvAtQ5uXdg&callback=initMap">
+      </script>
+      <script src="./javascript.js"></script>
+
+    </body>
 </html>
+
+ 
