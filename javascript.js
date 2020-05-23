@@ -25,7 +25,7 @@
 
 //declaring our global variables
 var apiKey = "AIzaSyCm4oR4IdvxBO6YgE4DSiSrVcvAtQ5uXdg";
-var queryURL = "https://maps.googleapis.com/maps/api/js?key=" + apiKey + "&callback=initMap";
+var queryURL = "https://cors-anywhere.herokuapp.com/" + "https://maps.googleapis.com/maps/api/js?key=" + apiKey + "&callback=initMap";
 var userInput = $("#start-point").val().trim();
 var dInput = $("#dest-point").val().trim();
 //ajax call to our queryURL
