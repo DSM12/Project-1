@@ -24,6 +24,32 @@
 //how much each trip will cost
 
 //declaring our global variables
+$(document).ready(function() {
+    $("#map").hide();
+    $(".container").hide();
+    $("#right-panel").hide();
+$("#submit-route").on("click", function () {
+    $('#exampleModal').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget) // Button that triggered the modal
+        var recipient = button.data('whatever') // Extract info from data-* attributes
+        // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+        // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+        var modal = $(this)
+        modal.find('.modal-title').text('New message to ' + recipient)
+        modal.find('.modal-body input').val(recipient)
+
+    })
+    // 1) grab values of modals
+    // 2) save them 
+    // 3) populate what needs to be populated
+    // 4) then unhide
+
+
+});
+
+});
+
+
 var apiKey = "AIzaSyCm4oR4IdvxBO6YgE4DSiSrVcvAtQ5uXdg";
 var queryURL = "https://cors-anywhere.herokuapp.com/" + "https://maps.googleapis.com/maps/api/js?key=" + apiKey + "&callback=initMap";
 var userInput = 'Philadelphia';
@@ -35,7 +61,7 @@ $.ajax({
 }).then(function (response) {
     console.log(response);
 });
-$("#form-submit").on("click", function() {
+$(".form-submit").on("click", function () {
     event.preventDefault();
     userInput = $("#start-point").val().trim();
     dInput = $("#dest-point").val().trim();
@@ -59,7 +85,7 @@ function initMap() {
     } else {
         directionsRenderer.map = map;
     }
-    
+
 
     directionsRenderer.addListener('directions_changed', function () {
         computeTotalDistance(directionsRenderer.getDirections());
@@ -96,4 +122,5 @@ function computeTotalDistance(result) {
     total = total / 1000;
     document.getElementById('total').innerHTML = total + ' km';
 }
+
 

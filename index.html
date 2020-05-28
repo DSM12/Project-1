@@ -1,64 +1,118 @@
+<!-- AIzaSyCm4oR4IdvxBO6YgE4DSiSrVcvAtQ5uXdg -->
 
-   <!-- AIzaSyCm4oR4IdvxBO6YgE4DSiSrVcvAtQ5uXdg -->
+<!DOCTYPE html>
+<html>
 
-  <!DOCTYPE html>
-  <html>
-    <head>
-      <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
-      <meta charset="utf-8">
-      <title>Draggable Directions</title>
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"></link>
-      <link rel="stylesheet" href="./style.css"></link>
-      <script src="https://www.gstatic.com/firebasejs/7.14.5/firebase-app.js"></script>
-      <script src="https://www.gstatic.com/firebasejs/7.14.5/firebase-database.js"></script>
-    </head>
-    <body>
-      <div id="map"></div>
-      <div id="right-panel">
-        <p>Total Distance: <span id="total"></span></p>
-        <div class="container">
-          <!-- Jumbotron for Title -->
-          <div class="jumbotron" style="background-color: #20315A ; color: white;">
-            <h1 class="text-center">
-              <strong>
-                <i class="fa fa-newspaper-o"></i> Your Route</strong>
-            </h1>
-          </div>
-          <!-- Row for Searching New York Times -->
-          <div class="row">
-            <div class="col-sm-12">
-              <br>
-              <!-- First card is for handling the search parameters -->
-              <div class="card">
-                <div class="card-header">
-                  <strong>
-                    <i class="fa fa-list-alt"></i> Search Parameters</strong>
-                </div>
-                <div class="card-body">
-                  <!-- Here we create an HTML Form for handling the inputs-->
-                  <form role="form">
-                    <!-- Here we create the text box for capturing the search term-->
-                    <div class="form-group">
-                      <label for="search">Starting Point:</label>
-                 
-                      <input type="text" class="form-control" id="start-point">
-                    </div>
-                    <div class="form-group">
-                      <label for="search">Destination:</label>
-                      <input type="text" class="form-control" id="dest-point">
-                    </div>
-                    <button id="form-submit">GO!</button>
+<head>
+  <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+  <meta charset="utf-8">
+  <title>Draggable Directions</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  </link>
+  <link rel="stylesheet" href="./style.css">
+  </link>
+  <script src="https://www.gstatic.com/firebasejs/7.14.5/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.14.5/firebase-database.js"></script>
+</head>
 
+<body>
+
+
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"
+    data-whatever="@mdo">Enter Route</button>
+
+
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="form-group">
+              <label for="recipient-name" class="col-form-label">Origin:</label>
+              <input type="text" class="form-control start-point" id="recipient-name">
+            </div>
+            <div class="form-group">
+              <label for="recipient-name" class="col-form-label">Destination:</label>
+              <input type="text" class="form-control dest-point" id="recipient-name">
+            </div>
+
+
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary form-submit" id="submit-route">Send message</button>
+        </div>
       </div>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-      <script async defer
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCm4oR4IdvxBO6YgE4DSiSrVcvAtQ5uXdg&callback=initMap">
-      </script>
-      <script src="./javascript.js"></script>
-      <script src="./firebase.js"></script>
-  
+    </div>
+  </div>
 
-    </body>
+  <div id="map"></div>
+  <div id="right-panel">
+    <p>Total Distance: <span id="total"></span></p>
+    <div class="container">
+      <!-- Jumbotron for Title -->
+      <div class="jumbotron" style="background-color: #20315A ; color: white;">
+        <h1 class="text-center">
+          <strong>
+            <i class="fa fa-newspaper-o"></i> Your Route</strong>
+        </h1>
+      </div>
+      <!-- Row for Searching New York Times -->
+      <div class="row">
+        <div class="col-sm-12">
+          <br>
+          <!-- First card is for handling the search parameters -->
+          <div class="card">
+            <div class="card-header">
+              <strong>
+                <i class="fa fa-list-alt"></i> Search Parameters</strong>
+            </div>
+            <div class="card-body">
+              <!-- Here we create an HTML Form for handling the inputs-->
+              <form role="form">
+                <!-- Here we create the text box for capturing the search term-->
+                <div class="form-group">
+                  <label for="search">Starting Point:</label>
+
+                  <input type="text" class="form-control start-point" id="start-point">
+                </div>
+                <div class="form-group">
+                  <label for="search">Destination:</label>
+                  <input type="text" class="form-control dest-point" id="dest-point">
+                </div>
+                <button class="form-submit" id="form-submit">GO!</button>
+
+
+
+
+            </div>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+            <script async defer
+              src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCm4oR4IdvxBO6YgE4DSiSrVcvAtQ5uXdg&callback=initMap">
+              </script>
+            <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+              integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+              crossorigin="anonymous"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+              integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+              crossorigin="anonymous"></script>
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+              integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+              crossorigin="anonymous"></script>
+            <script src="./javascript.js"></script>
+            <script src="./firebase.js"></script>
+
+
+
+
+</body>
+
 </html>
-
- 
