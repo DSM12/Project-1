@@ -26,8 +26,8 @@
 //declaring our global variables
 var apiKey = "AIzaSyCm4oR4IdvxBO6YgE4DSiSrVcvAtQ5uXdg";
 var queryURL = "https://cors-anywhere.herokuapp.com/" + "https://maps.googleapis.com/maps/api/js?key=" + apiKey + "&callback=initMap";
-var userInput = $("#start-point").val().trim();
-var dInput = $("#dest-point").val().trim();
+var userInput = 'Pittsburgh';
+var dInput = 'Philadelphia';
 //ajax call to our queryURL
 $.ajax({
     url: queryURL,
@@ -37,17 +37,12 @@ $.ajax({
 });
 $("#form-submit").on("click", function() {
     event.preventDefault();
+    userInput = $("#start-point").val().trim();
+    dInput = $("#dest-point").val().trim();
+
+    initMap();
 });
-// function buildQueryURL() {
-// // queryURL is the url we'll use to query the API
-// // Begin building an object to contain our API call's query parameters
-// // Set the API key
-// // var queryParams = { "api-key": "R1a31F4tBjCUaM2ho8GtIFsrSdtXt30M" };
-// // Grab text the user typed into the search input, add to the queryParams object
-// queryURL = $("#search-term")
-//   .val()
-//   .trim();
-//   }
+var directionsRenderer;
 function initMap() {
     var map = new google.maps.Map(document.getElementById('map'), {
         zoom: 12,
@@ -55,17 +50,23 @@ function initMap() {
     });
 
     var directionsService = new google.maps.DirectionsService;
-    var directionsRenderer = new google.maps.DirectionsRenderer({
-        draggable: true,
-        map: map,
-        panel: document.getElementById('right-panel')
-    });
+    if (!directionsRenderer) {
+        directionsRenderer = new google.maps.DirectionsRenderer({
+            draggable: true,
+            map: map,
+            panel: document.getElementById('right-panel')
+        });
+    } else {
+        directionsRenderer.map = map;
+    }
+    
 
     directionsRenderer.addListener('directions_changed', function () {
         computeTotalDistance(directionsRenderer.getDirections());
     });
-
-    displayRoute('Philadelphia', 'Pittsburgh', directionsService,
+    console.log(userInput);
+    console.log(dInput);
+    displayRoute(userInput, dInput, directionsService,
         directionsRenderer);
 }
 
