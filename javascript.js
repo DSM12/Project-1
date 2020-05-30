@@ -95,6 +95,12 @@ $("#submit-route").on("click", function () {
         dInput = modal.find('#destination').val().trim();
         console.log(dInput);
 
+        $("#exampleModal").hide();
+        $("#map").show();
+        $(".container").show();
+        $("#right-panel").show();
+
+
     initMap();
 });
 
@@ -126,3 +132,4 @@ function computeTotalDistance(result) {
     document.getElementById('total').innerHTML = total + ' km';
 }
 });
+
