@@ -29,7 +29,7 @@ $(document).ready(function() {
     var dInput;
 // console.log(dInput);
     $("#map").hide();
-    $(".container").hide();
+    // $(".container").hide();
     $("#right-panel").hide();
 // $(".form-submit").on("click", function () {
     $('#exampleModal').on('show.bs.modal', function (event) {
@@ -52,13 +52,14 @@ $(document).ready(function() {
 var apiKey = "AIzaSyCm4oR4IdvxBO6YgE4DSiSrVcvAtQ5uXdg";
 var queryURL = "https://cors-anywhere.herokuapp.com/" + "https://maps.googleapis.com/maps/api/js?key=" + apiKey + "&callback=initMap";
 var directionsRenderer;
+var directionsService; 
 function initMap() {
     var map = new google.maps.Map(document.getElementById('map'), {
         zoom: 12,
         center: { lat: 39.9526, lng: -75.1652 }  // Philly
     });
 
-    var directionsService = new google.maps.DirectionsService;
+    directionsService = new google.maps.DirectionsService;
     if (!directionsRenderer) {
         directionsRenderer = new google.maps.DirectionsRenderer({
             draggable: true,
@@ -71,12 +72,28 @@ function initMap() {
 
 
     directionsRenderer.addListener('directions_changed', function () {
-        computeTotalDistance(directionsRenderer.getDirections());
+        // computeTotalDistance(directionsRenderer.getDirections());
     });
     console.log(userInput);
     console.log(dInput);
     displayRoute(userInput, dInput, directionsService,
         directionsRenderer);
+}
+function displayRoute(origin, destination, service, display) {
+
+    service.route({
+        origin: $("#origin").val().trim(),
+        destination: $("#destination").val().trim(),
+        waypoints: [{ location: origin }, { location: destination }],
+        travelMode: 'DRIVING',
+        avoidTolls: true
+    }, function (response, status) {
+        if (status === 'OK') {
+            display.setDirections(response);
+        } else {
+            // alert('Could not display directions due to: ' + status);
+        }
+    });
 }
 //ajax call to our queryURL
 $.ajax({
@@ -94,42 +111,24 @@ $("#submit-route").on("click", function () {
         console.log(userInput);
         dInput = modal.find('#destination').val().trim();
         console.log(dInput);
-
+        initMap();
         $("#exampleModal").hide();
         $("#map").show();
-        $(".container").show();
+        // $(".container").show();
         $("#right-panel").show();
-
-
-    initMap();
+        $('.modal-backdrop').remove();
+    // displayRoute();
+    // computeTotalDistance();
 });
 
-
-function displayRoute(origin, destination, service, display) {
-
-    service.route({
-        origin: origin,
-        destination: destination,
-        waypoints: [{ location: origin }, { location: destination }],
-        travelMode: 'DRIVING',
-        avoidTolls: true
-    }, function (response, status) {
-        if (status === 'OK') {
-            display.setDirections(response);
-        } else {
-            // alert('Could not display directions due to: ' + status);
-        }
-    });
-}
-
-function computeTotalDistance(result) {
-    var total = 0;
-    var myroute = result.routes[0];
-    for (var i = 0; i < myroute.legs.length; i++) {
-        total += myroute.legs[i].distance.value;
-    }
-    total = total / 1000;
-    document.getElementById('total').innerHTML = total + ' km';
-}
+// function computeTotalDistance(result) {
+//     var total = 0;
+//     var myroute = result.routes[0];
+//     for (var i = 0; i < myroute.legs.length; i++) {
+//         total += myroute.legs[i].distance.value;
+//     }
+//     total = total / 1000;
+//     document.getElementById('total').innerHTML = total + ' km';
+// }
 });
 

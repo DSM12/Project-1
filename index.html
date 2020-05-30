@@ -52,47 +52,12 @@
       </div>
     </div>
   </div>
-
-  <div id="map"></div>
-  <div id="right-panel">
+    <div id="map"></div>
+    <div id="right-panel">
     <p>Total Distance: <span id="total"></span></p>
-    <div class="container">
-      <!-- Jumbotron for Title -->
-      <div class="jumbotron" style="background-color: #20315A ; color: white;">
-        <h1 class="text-center">
-          <strong>
-            <i class="fa fa-newspaper-o"></i> Your Route</strong>
-        </h1>
-      </div>
-      <!-- Row for Searching New York Times -->
-      <div class="row">
-        <div class="col-sm-12">
-          <br>
-          <!-- First card is for handling the search parameters -->
-          <div class="card">
-            <div class="card-header">
+    </div>
 
-
-              <strong>
-                <i class="fa fa-list-alt"></i> Search Parameters</strong>
-            </div>
-            <div class="card-body">
-              <!-- Here we create an HTML Form for handling the inputs-->
-              <form role="form">
-                <!-- Here we create the text box for capturing the search term-->
-                <div class="form-group">
-                  <label for="search">Starting Point:</label>
-
-                  <input type="text" class="form-control start-point" id="start-point">
-
-                </div>
-                <div class="form-group">
-                  <label for="search">Destination:</label>
-                  <input type="text" class="form-control dest-point" id="dest-point">
-                </div>
-
-                <button class="form-submit" id="form-submit">GO!</button>
-            </div>
+            
             <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
             <script async defer
               src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCm4oR4IdvxBO6YgE4DSiSrVcvAtQ5uXdg&callback=initMap">
