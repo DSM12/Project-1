@@ -1,5 +1,4 @@
 //App planning
-
 //Trip planner with start and end points
 //input form
 //starting point
@@ -24,24 +23,34 @@
 //how much each trip will cost
 
 //declaring our global variables
+$(document).ready(function() {
+    var userInput;
+    // console.log(userInput);
+    var dInput;
+// console.log(dInput);
+    $("#map").hide();
+    $(".container").hide();
+    $("#right-panel").hide();
+// $(".form-submit").on("click", function () {
+    $('#exampleModal').on('show.bs.modal', function (event) {
+        console.log("Let's get going!");
+        var button = $(event.relatedTarget) // Button that triggered the modal
+        var recipient = button.data('whatever') // Extract info from data-* attributes
+        // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+        // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+        
+
+    })
+    // 1) grab values of modals
+    // 2) save them 
+    // 3) populate what needs to be populated
+    // 4) then unhide
+
+
+// });
+
 var apiKey = "AIzaSyCm4oR4IdvxBO6YgE4DSiSrVcvAtQ5uXdg";
 var queryURL = "https://cors-anywhere.herokuapp.com/" + "https://maps.googleapis.com/maps/api/js?key=" + apiKey + "&callback=initMap";
-var userInput = 'Pittsburgh';
-var dInput = 'Philadelphia';
-//ajax call to our queryURL
-$.ajax({
-    url: queryURL,
-    method: "GET"
-}).then(function (response) {
-    console.log(response);
-});
-$("#form-submit").on("click", function() {
-    event.preventDefault();
-    userInput = $("#start-point").val().trim();
-    dInput = $("#dest-point").val().trim();
-
-    initMap();
-});
 var directionsRenderer;
 function initMap() {
     var map = new google.maps.Map(document.getElementById('map'), {
@@ -59,7 +68,7 @@ function initMap() {
     } else {
         directionsRenderer.map = map;
     }
-    
+
 
     directionsRenderer.addListener('directions_changed', function () {
         computeTotalDistance(directionsRenderer.getDirections());
@@ -69,6 +78,26 @@ function initMap() {
     displayRoute(userInput, dInput, directionsService,
         directionsRenderer);
 }
+//ajax call to our queryURL
+$.ajax({
+    url: queryURL,
+    method: "GET"
+}).then(function (response) {
+    console.log(response);
+});
+$("#submit-route").on("click", function () {
+    event.preventDefault();
+    // userInput = $("#start-point").val().trim();
+    // dInput = $("#dest-point").val().trim();
+    var modal = $("#exampleModal");
+        userInput = modal.find('#origin').val().trim();
+        console.log(userInput);
+        dInput = modal.find('#destination').val().trim();
+        console.log(dInput);
+
+    initMap();
+});
+
 
 function displayRoute(origin, destination, service, display) {
 
@@ -96,4 +125,4 @@ function computeTotalDistance(result) {
     total = total / 1000;
     document.getElementById('total').innerHTML = total + ' km';
 }
-
+});
