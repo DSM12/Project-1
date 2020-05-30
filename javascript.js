@@ -53,8 +53,8 @@ $("#submit-route").on("click", function () {
 
 var apiKey = "AIzaSyCm4oR4IdvxBO6YgE4DSiSrVcvAtQ5uXdg";
 var queryURL = "https://cors-anywhere.herokuapp.com/" + "https://maps.googleapis.com/maps/api/js?key=" + apiKey + "&callback=initMap";
-var userInput = 'Philadelphia';
-var dInput = 'Pittsburgh';
+var userInput = 'Pittsburgh';
+var dInput = 'Philadelphia';
 //ajax call to our queryURL
 $.ajax({
     url: queryURL,
