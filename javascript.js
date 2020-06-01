@@ -39,6 +39,10 @@ $(document).ready(function() {
     $('#exampleModal').on('show.bs.modal', function (event) {
         console.log("Let's get going!");
 
+        // $("#late-modal").on("show.bs.modal", function(event) {
+        //     console.log("Your ETA is supposed to go here")
+        });
+
         var button = $(event.relatedTarget) // Button that triggered the modal
         var recipient = button.data('whatever') // Extract info from data-* attributes
         // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
@@ -117,17 +121,16 @@ function displayRoute(origin, destination, service, display) {
      console.log(lateModal);
      if (intendedArrival < durationResults6) {
         // $("#timing").text("You're going to be LATE!");   
-        $("#late-modal").on("show.bs.modal", function(event) {
-
-        });
-        }
+        $("#late-modal").text("Estimated arrival: " + durationResults6);
         } else {
             // alert('Could not display directions due to: ' + status);
             // $("#ontime-modal").on("show.bs.model", function(event) {
 
             // });
         }
-    });        
+           
+    }
+});
 }
 
 $("#submit-route").on("click", function () {
@@ -159,7 +162,8 @@ $("#submit-route").on("click", function () {
         window.location.reload();
     });
 });
-});
+
+
 
 // function computeTotalDistance(result) {
 //     var total = 0;
