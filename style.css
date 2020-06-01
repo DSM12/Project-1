@@ -9,6 +9,18 @@
   border-width: medium;
   border-color: lightslategray;
 }
+#submit-route {
+  background-color: lightblue;
+  border-style: double;
+  border-width: medium;
+  border-color: lightslategray;
+}
+#give-me-directions {
+  background-color: lightblue;
+  border-style: double;
+  border-width: medium;
+  border-color: lightslategray;
+}
 #right-panel {
     font-family: 'Roboto','sans-serif';
     line-height: 30px;
@@ -47,3 +59,4 @@
     height: 100%;
     overflow: auto;
   }
+ 
