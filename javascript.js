@@ -113,11 +113,19 @@ function displayRoute(origin, destination, service, display) {
     // Below will get you estimated arrival time
            var durationResults6 = durationResults5.text;
      console.log(durationResults6);
+     var lateModal = "Estimated Arrival: " + durationResults6;
+     console.log(lateModal);
      if (intendedArrival < durationResults6) {
-        $("#timing").text("You're going to be LATE!");   
+        // $("#timing").text("You're going to be LATE!");   
+        $("#late-modal").on("show.bs.modal", function(event) {
+
+        });
         }
         } else {
             // alert('Could not display directions due to: ' + status);
+            // $("#ontime-modal").on("show.bs.model", function(event) {
+
+            // });
         }
     });        
 }
@@ -137,11 +145,19 @@ $("#submit-route").on("click", function () {
         initMap();
    
         $("#exampleModal").hide();
+        $("#late-modal").show();
         $("#map").show();
+        $("#give-me-directions").on("click", function() {
+            $("#late-modal").hide();
         // $(".container").show();
         $("#right-panel").show();
         $("#route-button").remove();
         $('.modal-backdrop').remove();
+    });
+    //refreshes page when user clicks x
+    $(".close").on("click", function() {
+        window.location.reload();
+    });
 });
 });
 
